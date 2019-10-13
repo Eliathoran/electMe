@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>ElectMe App</title>
+    <item>
+		<title>Version 0.1.4</title>
+        <description>Version without update popups</description>
+        <pubDate>Sat, 26 Sep 2019 15:20:11 +0000</pubDate>
+        <enclosure url="https://play.google.com/store/apps/details?id=com.bitzare.electme" sparkle:version="2.0" sparkle:os="android"/>
+        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
+    </item>
+    <!-- The best chosen release -->
+	<item>
+		<title>Version 0.1.5</title>
+        <description>Version with update popups and notifications</description>
+        <pubDate>Sat, 14 Oct 2019 15:20:11 +0000</pubDate>
+        <enclosure url="https://play.google.com/store/apps/details?id=com.bitzare.electme" sparkle:version="2.0" sparkle:os="android"/>
+        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
+    </item>
+  </channel>
+</rss>

@@ -17,5 +17,12 @@
         <enclosure url="https://play.google.com/store/apps/details?id=com.bitzare.electme" sparkle:version="0.1.5" sparkle:os="android"/>
         <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
     </item>
+   <item>
+	<title>Version 0.1.6</title>
+        <description>Version with simple password & region notifications</description>
+        <pubDate>Sat, 25 Oct 2019 16:09:11 +0000</pubDate>
+        <enclosure url="https://play.google.com/store/apps/details?id=com.bitzare.electme" sparkle:version="0.1.6" sparkle:os="android"/>
+        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
+    </item>
   </channel>
 </rss>

@@ -16,7 +16,7 @@
         "version": "1.0"
     },
     "host": "electme.net",
-    "basePath": "/v0.1",
+    "basePath": "/api/v0.1",
     "paths": {
         "/{language}/countries/{country_name}/elections": {
             "get": {

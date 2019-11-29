@@ -18,6 +18,43 @@
     "host": "electme.net",
     "basePath": "/api/v0.1",
     "paths": {
+        "/{language}/countries/{country_name}": {
+            "get": {
+                "description": "Gets all parties present in the given country and election",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "regions"
+                ],
+                "summary": "Gets a list of all parties from a given election id",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Region"
+                        }
+                    }
+                }
+            }
+        },
         "/{language}/countries/{country_name}/elections": {
             "get": {
                 "description": "Get all elections by country slug",
@@ -57,20 +94,34 @@
         },
         "/{language}/countries/{country_name}/elections/{election_id}": {
             "get": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
+                "description": "Gets all election info and parties present in it from a given country and election id",
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Show a account",
+                "tags": [
+                    "elections"
+                ],
+                "summary": "Gets all the info of a given election",
                 "operationId": "get-string-by-int",
                 "parameters": [
                     {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
                         "type": "integer",
-                        "description": "Account ID",
-                        "name": "id",
+                        "description": "Election Id",
+                        "name": "election_id",
                         "in": "path",
                         "required": true
                     }
@@ -79,7 +130,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Region"
+                            "$ref": "#/definitions/handlers.ElectionResult"
                         }
                     }
                 }
@@ -90,6 +141,9 @@
                 "description": "Gets all proposals from a given party in the selected election",
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "proposals"
                 ],
                 "summary": "Gets a list of all party proposals",
                 "operationId": "get-string-by-int",
@@ -131,6 +185,9 @@
                 "description": "Gets all parties present in the given country and election",
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "parties"
                 ],
                 "summary": "Gets a list of all parties from a given election id",
                 "operationId": "get-string-by-int",

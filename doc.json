@@ -18,7 +18,7 @@
     "host": "electme.net",
     "basePath": "/api/v0.1",
     "paths": {
-        "/{language}/countries/{country_name}": {
+        "/countries/{country_name}": {
             "get": {
                 "description": "Gets a list regions in a given country",
                 "produces": [
@@ -48,7 +48,7 @@
                 }
             }
         },
-        "/{language}/countries/{country_name}/elections": {
+        "/countries/{country_name}/elections": {
             "get": {
                 "description": "Get all elections by country slug",
                 "produces": [
@@ -72,13 +72,13 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ElectionResult"
+                            "$ref": "#/definitions/models.Election"
                         }
                     }
                 }
             }
         },
-        "/{language}/countries/{country_name}/elections/{election_id}": {
+        "/countries/{country_name}/elections/{election_id}": {
             "get": {
                 "description": "Gets all election info and parties present in it from a given country and election id",
                 "produces": [
@@ -109,24 +109,31 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ElectionResult"
+                            "$ref": "#/definitions/models.Election"
                         }
                     }
                 }
             }
         },
-        "/{language}/countries/{country_name}/elections/{election_id}/parties": {
+        "/countries/{country_name}/elections/{election_id}/parties": {
             "get": {
-                "description": "Gets all proposals from a given party in the selected election",
+                "description": "Gets all parties present in the given country and election",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Proposals"
+                    "Parties"
                 ],
-                "summary": "Gets a list of all party proposals",
+                "summary": "Gets a list of all parties from a given election id",
                 "operationId": "get-string-by-int",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "type": "string",
                         "description": "Country Name",
@@ -146,13 +153,13 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ElectionResult"
+                            "$ref": "#/definitions/models.Party"
                         }
                     }
                 }
             }
         },
-        "/{language}/countries/{country_name}/elections/{election_id}/parties/{party_id}": {
+        "/countries/{country_name}/elections/{election_id}/parties/{party_id}": {
             "get": {
                 "description": "Gets all parties present in the given country and election",
                 "produces": [
@@ -190,7 +197,74 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ElectionResult"
+                            "$ref": "#/definitions/models.Party"
+                        }
+                    }
+                }
+            }
+        },
+        "/countries/{country_name}/elections/{election_id}/parties/{party_id}/proposals": {
+            "get": {
+                "description": "Gets all proposals from a given party in the selected election",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Proposals"
+                ],
+                "summary": "Gets a list of all party proposals",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Election Id",
+                        "name": "election_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Proposal"
+                        }
+                    }
+                }
+            }
+        },
+        "/countries/{country_name}/elections/{election_id}/parties/{party_id}/proposals/{proposal_id}": {
+            "get": {
+                "description": "Gets all proposal information given proposal id  and the party in the selected election",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ProposalInfo"
+                ],
+                "summary": "Gets all proposal information",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Proposal Id",
+                        "name": "proposal_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Proposal"
                         }
                     }
                 }
@@ -198,7 +272,18 @@
         }
     },
     "definitions": {
-        "handlers.ElectionResult": {
+        "models.Coordinates": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.Election": {
             "type": "object",
             "properties": {
                 "endDate": {
@@ -221,48 +306,6 @@
                 },
                 "startDate": {
                     "type": "string"
-                }
-            }
-        },
-        "models.Coordinates": {
-            "type": "object",
-            "properties": {
-                "latitude": {
-                    "type": "number"
-                },
-                "longitude": {
-                    "type": "number"
-                }
-            }
-        },
-        "models.Election": {
-            "type": "object",
-            "properties": {
-                "endDate": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "location": {
-                    "type": "object",
-                    "$ref": "#/definitions/models.Region"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parties": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Party"
-                    }
-                },
-                "startDate": {
-                    "type": "string"
-                },
-                "winner": {
-                    "type": "object",
-                    "$ref": "#/definitions/models.Party"
                 }
             }
         },

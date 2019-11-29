@@ -24,6 +24,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "elections"
+                ],
                 "summary": "Gets all elections from a given country",
                 "operationId": "get-string-by-int",
                 "parameters": [
@@ -54,31 +57,20 @@
         },
         "/{language}/countries/{country_name}/elections/{election_id}": {
             "get": {
-                "description": "Gets all election info and parties present in it from a given country and election id",
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Gets all the info of a given election",
+                "summary": "Show a account",
                 "operationId": "get-string-by-int",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Language",
-                        "name": "language",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Country Name",
-                        "name": "country_name",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
                         "type": "integer",
-                        "description": "Election Id",
-                        "name": "election_id",
+                        "description": "Account ID",
+                        "name": "id",
                         "in": "path",
                         "required": true
                     }
@@ -87,7 +79,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ElectionResult"
+                            "$ref": "#/definitions/models.Region"
                         }
                     }
                 }
@@ -95,11 +87,11 @@
         },
         "/{language}/countries/{country_name}/elections/{election_id}/parties": {
             "get": {
-                "description": "Gets all parties present in the given country and election",
+                "description": "Gets all proposals from a given party in the selected election",
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Gets a list of all parties from a given election id",
+                "summary": "Gets a list of all party proposals",
                 "operationId": "get-string-by-int",
                 "parameters": [
                     {

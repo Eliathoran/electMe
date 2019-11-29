@@ -20,29 +20,17 @@
     "paths": {
         "/accounts/{id}": {
             "get": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
+                "description": "Get elections by country slug",
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Show a account",
+                "summary": "Gets all elections from a given country",
                 "operationId": "get-string-by-int",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Account ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Region"
+                            "$ref": "#/definitions/handlers.ElectionResult"
                         }
                     }
                 }
@@ -50,6 +38,32 @@
         }
     },
     "definitions": {
+        "handlers.ElectionResult": {
+            "type": "object",
+            "properties": {
+                "endDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Party"
+                    }
+                },
+                "region": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Coordinates": {
             "type": "object",
             "properties": {
@@ -58,6 +72,115 @@
                 },
                 "longitude": {
                     "type": "number"
+                }
+            }
+        },
+        "models.Election": {
+            "type": "object",
+            "properties": {
+                "endDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Region"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Party"
+                    }
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "winner": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Party"
+                }
+            }
+        },
+        "models.Party": {
+            "type": "object",
+            "properties": {
+                "color1": {
+                    "type": "string"
+                },
+                "color2": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Party"
+                    }
+                },
+                "proposals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Proposal"
+                    }
+                },
+                "shortName": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "wikiLink": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Proposal": {
+            "type": "object",
+            "properties": {
+                "abstract": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "election": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Election"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "party": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Party"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
                 }
             }
         },

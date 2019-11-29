@@ -1,0 +1,102 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This ElectMe OPEN API server.",
+        "title": "ElectMe API",
+        "termsOfService": "https://electme.net/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "https://electme.net/",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "electme.net",
+    "basePath": "/v2",
+    "paths": {
+        "/accounts/{id}": {
+            "get": {
+                "description": "get string by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Show a account",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Account ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Region"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Coordinates": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.Region": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Region"
+                    }
+                },
+                "codeName": {
+                    "type": "string"
+                },
+                "coordinates": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Coordinates"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isoCode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Region"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

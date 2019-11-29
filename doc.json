@@ -18,36 +18,6 @@
     "host": "electme.net",
     "basePath": "/v0.1",
     "paths": {
-        "/accounts/{id}": {
-            "get": {
-                "description": "get string by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "Show a account",
-                "operationId": "get-string-by-int",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Account ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Region"
-                        }
-                    }
-                }
-            }
-        },
         "/{language}/countries/{country_name}/elections": {
             "get": {
                 "description": "Get all elections by country slug",
@@ -56,6 +26,22 @@
                 ],
                 "summary": "Gets all elections from a given country",
                 "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -72,8 +58,120 @@
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Gets all elections from a given country",
+                "summary": "Gets all the info of a given election",
                 "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Election Id",
+                        "name": "election_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ElectionResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/{language}/countries/{country_name}/elections/{election_id}/parties": {
+            "get": {
+                "description": "Gets all parties present in the given country and election",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Gets a list of all parties from a given election id",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Election Id",
+                        "name": "election_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ElectionResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/{language}/countries/{country_name}/elections/{election_id}/parties/{party_id}": {
+            "get": {
+                "description": "Gets all parties present in the given country and election",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Gets a list of all parties from a given election id",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Language",
+                        "name": "language",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country Name",
+                        "name": "country_name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Election Id",
+                        "name": "election_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Party Id",
+                        "name": "party_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",

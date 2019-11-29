@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This ElectMe OPEN API server.",
+        "description": "This document includes all the methods that ElectME API offers its users.",
         "title": "ElectMe API",
         "termsOfService": "https://electme.net/terms/",
         "contact": {
@@ -20,23 +20,16 @@
     "paths": {
         "/{language}/countries/{country_name}": {
             "get": {
-                "description": "Gets all parties present in the given country and election",
+                "description": "Gets a list regions in a given country",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "regions"
+                    "Regions"
                 ],
-                "summary": "Gets a list of all parties from a given election id",
+                "summary": "Gets a list regions in a given country",
                 "operationId": "get-string-by-int",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Language",
-                        "name": "language",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Country Name",
@@ -62,18 +55,11 @@
                     "application/json"
                 ],
                 "tags": [
-                    "elections"
+                    "Elections"
                 ],
                 "summary": "Gets all elections from a given country",
                 "operationId": "get-string-by-int",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Language",
-                        "name": "language",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Country Name",
@@ -99,18 +85,11 @@
                     "application/json"
                 ],
                 "tags": [
-                    "elections"
+                    "Elections"
                 ],
                 "summary": "Gets all the info of a given election",
                 "operationId": "get-string-by-int",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Language",
-                        "name": "language",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Country Name",
@@ -143,18 +122,11 @@
                     "application/json"
                 ],
                 "tags": [
-                    "proposals"
+                    "Proposals"
                 ],
                 "summary": "Gets a list of all party proposals",
                 "operationId": "get-string-by-int",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Language",
-                        "name": "language",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Country Name",
@@ -187,18 +159,11 @@
                     "application/json"
                 ],
                 "tags": [
-                    "parties"
+                    "Parties"
                 ],
                 "summary": "Gets a list of all parties from a given election id",
                 "operationId": "get-string-by-int",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Language",
-                        "name": "language",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Country Name",

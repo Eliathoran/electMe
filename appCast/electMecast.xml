@@ -31,5 +31,12 @@
         <enclosure url="https://play.google.com/store/apps/details?id=com.bitzare.electme" sparkle:version="0.1.7" sparkle:os="android"/>
         <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
     </item>
+   <item>
+	<title>Version 0.2.0</title>
+        <description>Leveling + </description>
+        <pubDate>Sun, 9 Dec 2019 00:19:21 +0000</pubDate>
+        <enclosure url="https://play.google.com/store/apps/details?id=com.bitzare.electme" sparkle:version="0.2.0" sparkle:os="android"/>
+        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
+    </item>
   </channel>
 </rss>
